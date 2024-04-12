@@ -1,0 +1,132 @@
+REDIS 
+
+set Name Shiv
+get Name
+
+set Name Shivani xx //Will set key only it if already exists i.e only updates doesn't create
+
+set Name Shivani nx //If key already exists it won't update. Can be used only to create no updation
+
+setex color 1 red //To set key value pair that will live for 60 s
+get color
+
+//After 60 s getex will return null
+get color
+
+set key1 value1 ex 60 // Alternate syntax
+
+Multi set:  to set multiple key-value pairs
+mset Name Shivani Roll 21pd34 Course BigData
+get Course
+
+INCRBY INCR 
+DECRBY DECR
+
+//Fetch the properties from 1 to 3 of a single item
+//Update the properties from 1 to 3 of a single item
+//Fetch all properties
+//Create several items
+
+//To increment / decrement numbers 
+//incr by 10
+//INCRBY key increment
+//decr by 0
+
+set age 50 
+incrby age  2
+DECRBY age 1
+
+hset Customer Name 'Harry Potter' Age 18 School Hogwards 
+HEXISTS Customer School //Will give 1 as true
+hexists Customer Industry // Will return 0
+
+//To increment value of age in hash
+//hincrby is used 
+HINCRBY Customer Age 3
+
+//To find the length of your hash field's value
+hstrlen Customer Name
+
+//To get either just keys ot just values
+// use hkeys hashname or hvals hashname
+//NB: Everything is case sensitive
+
+HKEYS Customer
+HVALS Customer
+
+//To update a particular field
+hset Customer Name Hermione
+hvals Customer
+
+//To add a field
+hset Customer House Gryffindor 
+hkeys Customer
+
+
+
+//To delete a particular field in hash
+HDEL Customer House
+hkeys Customer
+
+//To delete the hash 
+del Customer
+
+SET
+
+//Set is a collection of strings but each val should be unique
+
+//To add to a set
+//sadd 
+
+//To remove a member
+//SREM key member 
+
+//To count the number of elements
+//SCARD key
+
+ //To find union of multiple sets
+// SUNION key 
+
+ //To find intersection of multiple sets
+// SINTER key
+
+ //To get the members
+// SMEMBERS key or
+ //SSCAN key  cursor 
+ //can be used interchangeably
+
+ //SISMEMBER key member //To check if a particular member is present
+ //SMISMEMBER key member  // to check if multiple members are present in set
+ 
+SADD flavours Vanilla Butterscotch Chocolate Blackcurrant Strawberry Caramel Coffee Mango
+
+SADD toppings Chocochips Rainbow-Sprinkles Tutti-Fruity Nuts Cake-crumbs 
+
+SADD syrups Chocolate Caramel Orange Strawberry Pistah
+
+SCARD flavours 
+SCARD toppings
+SCARD syrups 
+
+SREM flavours Mango
+
+SCARD flavours //Make sure to NOT give space . 
+
+SINTER flavours syrups
+
+SUNION flavours toppings syrups 
+
+SMEMBERS toppings 
+//sscan toppings//Wrong arg wrong
+
+SISMEMBER flavours Chocolate
+
+SMISMEMBER flavours Chocolate Coffee
+SMISMEMBER flavours Mango Coffee
+
+HYPERLOGLOG
+
+//pfadd
+//pfcount
+
+//hyperlog is used in the cases where say you have to count the no. of views of a website.
